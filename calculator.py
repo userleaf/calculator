@@ -14,13 +14,7 @@ f,g,h=symbols('f g h', cls=Function)
 
 def result_show(result):
     # change answer label with result
-    obj = BytesIO()
-    preview(result, viewer='BytesIO', outputbuffer=obj)
-    obj.seek(0)
-    img=Image.open(obj)
-    invImg=ImageOps.invert(img)
-    answer.img = ImageTk.PhotoImage(invImg)
-    answer.config(image=answer.img)
+    answer.config(text=result)
 
 def u_integrate(queue):
     a = defaults
@@ -42,7 +36,7 @@ def u_integrate(queue):
             result = integrate(expression,z)
         if "w" in queue:
             result = integrate(expression,w)
-        result_show(result,queue)
+        result_show(result)
 
     else:
         queue = str(queue[1:])
